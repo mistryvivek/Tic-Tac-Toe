@@ -7,6 +7,11 @@ public class Grid implements GridI{
         //Says whether is a nought or a cross.
         String val; 
 
+        public Square(){
+            //Undefined squares from the beginning.
+            val = "U";
+        }
+
         //Setter methods.
         public void set_nought(){
             val = "O";
@@ -22,14 +27,16 @@ public class Grid implements GridI{
         }
     }
 
-    public void displayBoard(){
+
+
+    public String displayBoard(){
         String empty_line = "--------";
-        System.out.println(empty_line);
+        String output = empty_line;
         //Loops through each row on the board.
-        for (int i=0; i > 2; i++){
-            System.out.println(format(i));
-            System.out.println(empty_line);
+        for (int i=0; i < 2; i++){
+            output = output + "\n" + format(i) + "\n" + empty_line;
         }
+        return output;
     }
 
     //Read a row and get it in the correct format.
