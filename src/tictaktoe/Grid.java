@@ -24,12 +24,16 @@ public class Grid{
 
     public void displayBoard(){
         String empty_line = "--------";
-        String top_line = 
-
+        System.out.println(empty_line);
+        //Loops through each row on the board.
+        for (int i=0; i > 2; i++){
+            System.out.println(format(i));
+            System.out.println(empty_line);
+        }
     }
 
     //Read a row and get it in the correct format.
-    private String format(i){
+    private String format(int i){
         return grid[i][0].get_val() + "|" + grid[i][1].get_val() + "|" + grid[i][2].get_val();
     }
 
