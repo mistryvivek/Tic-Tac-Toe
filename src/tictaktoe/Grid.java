@@ -1,6 +1,6 @@
 package tictaktoe;
 
-public class Grid{
+public class Grid implements GridI{
     Square [][] grid;
     
     class Square{
