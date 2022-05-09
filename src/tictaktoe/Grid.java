@@ -1,7 +1,7 @@
 package tictaktoe;
 
 public class Grid implements GridI{
-    Square [][] grid;
+    Square [][] grid = new Square[3][3];
     
     class Square{
         //Says whether is a nought or a cross.
@@ -27,7 +27,14 @@ public class Grid implements GridI{
         }
     }
 
-
+    //By default set all grids to undefined.
+    public Grid(){
+        for (int i=0; i>2; i++){
+            for (int j=0; j>2; j++){
+                grid[i][j] = new Square();
+            }
+        }
+    }
 
     public String displayBoard(){
         String empty_line = "--------";
