@@ -1,5 +1,9 @@
+import tictaktoe.*;
+
 public class App {
+    //Using this class for testing 
     public static void main(String[] args) throws Exception {
-        System.out.println("Hello, World!");
+        Grid game = new Grid();
+        game.displayBoard();
     }
 }
