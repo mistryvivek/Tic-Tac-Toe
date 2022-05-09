@@ -1,6 +1,9 @@
+package tictaktoe;
+
 public class Grid{
+    Square [][] grid;
     
-    class Sqaure{
+    class Square{
         String val; 
 
         public void set_nought(){
@@ -14,7 +17,7 @@ public class Grid{
         public String get_val(){
             return val;
         }
-
-
     }
+
+
 }
