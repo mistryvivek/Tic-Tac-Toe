@@ -64,7 +64,7 @@ public class Grid implements GridI{
     //Easy bot places "x" at random places in the grid.
     private List<Integer> easyBotChoice(){
         Random rand = new Random();
-        List<Integer> pos = avaliable.get(rand.nextInt(avaliable.size());
+        List<Integer> pos = avaliable.get(rand.nextInt(avaliable.size()));
         avaliable.remove(pos);
         return pos;
     }
@@ -72,8 +72,19 @@ public class Grid implements GridI{
     //Create a method that marks the position of the Grid.
     public String botsTurn(){
         List<Integer> coord = easyBotChoice();
-        Square gridPos = grid[coord.get(0)][coord.get(1)];
-        gridPos.set_cross();
+        grid[coord.get(0)][coord.get(1)].set_cross();
+        return displayBoard();
+    }
+
+    //User inputs 2D list and then it makes their move.
+    public String usersTurn(List<Integer> gridPos){
+        //Santity check.
+        if (gridPos.size() != 2 ||
+            gridPos.get(0) + gridPos.get(1) > 4 || 
+            gridPos.get(0) + gridPos.get(1) < -1){
+            throw new IllegalArgumentException();
+        }
+        grid[gridPos.get(0)][gridPos.get(1)].set_nought();
         return displayBoard();
     }
 
