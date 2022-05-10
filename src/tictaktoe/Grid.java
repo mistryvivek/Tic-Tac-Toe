@@ -64,10 +64,8 @@ public class Grid implements GridI{
     //Easy bot places "x" at random places in the grid.
     private List<Integer> easyBotChoice(){
         Random rand = new Random();
-        //Save to a variable so we can delete it while we are here.
-        Integer index = rand.nextInt(avaliable.size());
-        List<Integer> pos = avaliable.get(index);
-        avaliable.remove(index);
+        List<Integer> pos = avaliable.get(rand.nextInt(avaliable.size());
+        avaliable.remove(pos);
         return pos;
     }
 
