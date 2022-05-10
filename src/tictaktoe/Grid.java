@@ -1,5 +1,7 @@
 package tictaktoe;
 
+import java.util.Random;
+
 public class Grid implements GridI{
     Square [][] grid = new Square[3][3];
     
@@ -50,6 +52,15 @@ public class Grid implements GridI{
     private String format(int i){
         return grid[i][0].get_val() + "|" + grid[i][1].get_val() + "|" + grid[i][2].get_val();
     }
+
+    //Easy bot places "x" at random places in the grid.
+    private Square easyBotChoice(){
+        Random posOne = new Random();
+        Random posTwo = new Random();
+        return grid[posOne.nextInt(2)][posTwo.nextInt(2)];
+    }
+
+    
 
     
 
