@@ -4,5 +4,6 @@ package tictaktoe;
 public interface GridI {
     public String displayBoard();
     public String botsTurn();
+    public String usersTurn();
 
 }
