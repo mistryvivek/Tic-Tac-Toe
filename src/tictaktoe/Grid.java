@@ -1,9 +1,13 @@
 package tictaktoe;
 
+import java.util.HashSet;
+import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 public class Grid implements GridI{
     Square [][] grid = new Square[3][3];
+    Set<List<Integer>> avaliable = new HashSet<>();
     
     class Square{
         //Says whether is a nought or a cross.
@@ -58,6 +62,11 @@ public class Grid implements GridI{
         Random posOne = new Random();
         Random posTwo = new Random();
         return grid[posOne.nextInt(2)][posTwo.nextInt(2)];
+    }
+
+    //Create a method that marks the position of the Grid.
+    public Boolean botsTurn(){
+
     }
 
     
