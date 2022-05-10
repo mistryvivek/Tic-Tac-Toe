@@ -1,13 +1,15 @@
 package tictaktoe;
 
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
-import java.util.Set;
 
 public class Grid implements GridI{
     Square [][] grid = new Square[3][3];
-    Set<List<Integer>> avaliable = new HashSet<>();
+    //Easy to get random objects from lists.
+    //Order may help with removing items.
+    List<List<Integer>> avaliable = new ArrayList<>();
     
     class Square{
         //Says whether is a nought or a cross.
@@ -38,6 +40,8 @@ public class Grid implements GridI{
         for (int i=0; i < 3; i++){
             for (int j=0; j < 3; j++){
                 grid[i][j] = new Square();
+                //Everything is avaliable from the start.
+                avaliable.add(Arrays.asList(i,j));
             }
         }
     }
@@ -58,15 +62,21 @@ public class Grid implements GridI{
     }
 
     //Easy bot places "x" at random places in the grid.
-    private Square easyBotChoice(){
-        Random posOne = new Random();
-        Random posTwo = new Random();
-        return grid[posOne.nextInt(2)][posTwo.nextInt(2)];
+    private List<Integer> easyBotChoice(){
+        Random rand = new Random();
+        //Save to a variable so we can delete it while we are here.
+        Integer index = rand.nextInt(avaliable.size());
+        List<Integer> pos = avaliable.get(index);
+        avaliable.remove(index);
+        return pos;
     }
 
     //Create a method that marks the position of the Grid.
-    public Boolean botsTurn(){
-
+    public String botsTurn(){
+        List<Integer> coord = easyBotChoice();
+        Square gridPos = grid[coord.get(0)][coord.get(1)];
+        gridPos.set_cross();
+        return displayBoard();
     }
 
     
