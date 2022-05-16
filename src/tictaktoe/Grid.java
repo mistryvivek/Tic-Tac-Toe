@@ -58,7 +58,7 @@ public class Grid implements GridI{
 
     //Read a row and get it in the correct format.
     private String format(int i){
-        return grid[i][0].get_val() + "|" + grid[i][1].get_val() + "|" + grid[i][2].get_val();
+        return grid[0][i].get_val() + "|" + grid[1][i].get_val() + "|" + grid[2][i].get_val();
     }
 
     //Easy bot places "x" at random places in the grid.
@@ -88,6 +88,40 @@ public class Grid implements GridI{
         return displayBoard();
     }
 
+    public Boolean checkWin(){
+        //This runs a method that increments x and y using steps that should win.
+        //Stops once the pattern stops working.
+        return (checkWin((Arrays.asList(new Integer[]{0,0})), grid[0][0].get_val(), 0, 1) || 
+                checkWin((Arrays.asList(new Integer[]{0,0})), grid[0][0].get_val(), 1, 0 ) ||
+                checkWin((Arrays.asList(new Integer[]{0,0})), grid[0][0].get_val(), 1, 1 ) ||
+                checkWin((Arrays.asList(new Integer[]{2,2})), grid[2][2].get_val(), 0, -1 ) ||
+                checkWin((Arrays.asList(new Integer[]{2,2})), grid[2][2].get_val(), -1, 0) ||
+                checkWin((Arrays.asList(new Integer[]{2,0})), grid[0][2].get_val(), -1, 1)) ;       
+    }
+
+    //Convience method.
+    private Boolean checkWin(List<Integer> current, String value, int xIncrement, int yIncrement){ 
+        //If it is out of bounds, it is true.
+        if (current.get(0) > 2 || current.get(0) < 0 || current.get(1) > 2 || current.get(1) < 0 ){
+            return true;
+        }
+        //Reached an undefined square so it must stop.
+        else if (value == "U"){
+            return false;
+        }
+        //If it is the same value as the previous grid.
+        //Increment the list have to create copy so it does not effect the memory location.
+        else if (grid[current.get(0)][current.get(1)].get_val() == value){
+            List<Integer> copyList = new ArrayList<>();
+            copyList.add(current.get(0) + xIncrement);
+            copyList.add(current.get(1) + yIncrement);
+            return checkWin(copyList, value, xIncrement, yIncrement);
+        }
+        //If the value isn't the same as the last there must not be a winning move.
+        else{
+            return false;
+        }
+    }
     
 
     
