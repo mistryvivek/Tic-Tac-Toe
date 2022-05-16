@@ -77,7 +77,15 @@ public class Grid implements GridI{
 
     //Create a method that marks the position of the Grid.
     public String botsTurn(){
-        List<Integer> coord = HigherBotChoice();
+        if (level == "hard" || level == "medium"){
+            return makeTurn(HigherBotChoice());
+        }
+        else{
+            return makeTurn(easyBotChoice());
+        }
+    }
+
+    public String makeTurn(List<Integer> coord){
         avaliable.remove(coord);
         grid[coord.get(0)][coord.get(1)].set_cross();
         scoring(coord);
@@ -179,11 +187,13 @@ public class Grid implements GridI{
 }
 
     private List<Integer> HigherBotChoice(){
-        
+        //Nothing is going to be this low so it is a worth while
+        //minimum.
         Integer max = -1;
         List<Integer> choice = new ArrayList<>();
         for (int i=0; i < 3; i++){
             for (int j=0; j < 3; j++){
+                //Biggest and avaliable switch values.
                 if ((gridScore[i][j] > max) && avaliable.contains(Arrays.asList(new Integer[]{i,j}))){
                     choice.clear();
                     choice.add(i);
